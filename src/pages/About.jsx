@@ -1,7 +1,7 @@
-
+import Details from '../components/Details.jsx'
 function About() {
   return (
-    <div>About</div>
+    <Details />
   )
 }
 

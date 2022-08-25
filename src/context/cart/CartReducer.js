@@ -1,4 +1,4 @@
-import { SHOW_HIDE_CART, ADD_TO_CART, REMOVE_ITEM } from "../Types";
+import { SHOW_HIDE_CART, ADD_TO_CART, REMOVE_ITEM, VIEW_DETAILS } from "../Types";
 
 const CartReducer = (state, action) => {
   switch (action.type) {
@@ -12,6 +12,7 @@ const CartReducer = (state, action) => {
       const itemExists = state.cartItems.find(
         (item) => item._id === action.payload._id 
     )
+    
         
     if (!itemExists)
      return {         
@@ -21,10 +22,24 @@ const CartReducer = (state, action) => {
   else{
     return{
       ...state,
-
     }
   }
     };
+    case VIEW_DETAILS:{
+      const itemExists = state.cartDetails.length
+      if(itemExists === 0){
+        return{
+          ...state,
+          cartDetails: [...state.cartDetails, action.payload]
+        }
+      }
+      else{
+        return{
+          ...state,
+          cartDetails:[action.payload]
+        }
+      }
+    }
 
     case REMOVE_ITEM: {
       return {

@@ -2,8 +2,10 @@ import { Button, Card } from "react-bootstrap"
 import formatCurrency from "../utilities/formatCurrency"
 import { useContext } from "react";
 import CartContext from "../context/cart/CartContext";
+import { NavLink } from "react-router-dom";
 function StoreItem({ product }) {
-    const { addToCart,cartItems } = useContext(CartContext);
+    const { addToCart,cartItems,viewDetails } = useContext(CartContext);
+    
  
   return (
     <Card className="h-100">
@@ -18,6 +20,14 @@ function StoreItem({ product }) {
                 <Button className="w-100" onClick={() => addToCart(product)}>
                     Add to cart
                 </Button>
+               
+                <NavLink  to='/about'>
+                <Button className="w-50 mt-2 " onClick={() => viewDetails(product) } >
+                    view details
+                </Button>
+                </NavLink>
+                
+               
             </div>
         </Card.Body>
     </Card>
