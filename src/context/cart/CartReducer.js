@@ -9,11 +9,23 @@ const CartReducer = (state, action) => {
       };
     }
     case ADD_TO_CART: {
-      return {
-        ...state,
-        cartItems: [...state.cartItems, action.payload],
-      };
+      const itemExists = state.cartItems.find(
+        (item) => item._id === action.payload._id 
+    )
+        
+    if (!itemExists)
+     return {         
+      ...state, 
+      cartItems: [...state.cartItems, action.payload]
+  }
+  else{
+    return{
+      ...state,
+
     }
+  }
+    };
+
     case REMOVE_ITEM: {
       return {
         ...state,
@@ -22,6 +34,8 @@ const CartReducer = (state, action) => {
         ),
       };
     }
+   
+
 
     default:
       return state;
